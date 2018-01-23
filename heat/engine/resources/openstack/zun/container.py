@@ -37,7 +37,7 @@ class Container(resource.Resource):
     ) = (
         'name', 'image', 'command', 'cpu', 'memory',
         'environment', 'workdir', 'labels', 'image_pull_policy',
-        'restart_policy', 'interactive', 'image_driver'
+        'restart_policy', 'interactive', 'nets', 'image_driver', 
     )
 
     ATTRIBUTES = (
@@ -102,6 +102,10 @@ class Container(resource.Resource):
         INTERACTIVE: properties.Schema(
             properties.Schema.BOOLEAN,
             _('Keep STDIN open even if not attached.'),
+        ),
+        NETS: properties.Schema(
+            properties.Schema.LIST,
+            _('Networks to be connected to Zun Container'),
         ),
         IMAGE_DRIVER: properties.Schema(
             properties.Schema.STRING,
